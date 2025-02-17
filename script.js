@@ -77,7 +77,7 @@ window.addEventListener('scroll', function () {
                     if (sec.classList.contains('skills')) {
                         circles.forEach((circle) => {
                             circle.classList.add('animate-path');
-                            let list = [90, 80, 45, 60, 80, 70, 80, 60, 50, 90];
+                            let list = [90, 80, 55, 60, 80, 50, 80, 65, 70, 90];
                             const objects = document.querySelectorAll('.percentage');
                             objects.forEach((obj, i) => {
                                 animateValue(obj, 0, list[i], 2500);
@@ -122,7 +122,32 @@ function animateValue(obj, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-document.getElementById('contactForm').addEventListener('submit', function (event) {
-    var emailSubject = document.getElementById('emailSubject').value;
-    document.getElementById('hiddenSubject').value = emailSubject;
+(function() {
+    emailjs.init("EUqjlxFdr0vw9vblA"); // EmailJS public key
+})();
+
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const btn = document.querySelector('.btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const formValues = Object.fromEntries(formData.entries()); 
+
+    emailjs.send("service_7paalfm", "template_hseg3je", formValues) // EmailJS service & template IDs
+        .then(() => {
+            alert('Message sent successfully!');
+            this.reset();
+        })
+        .catch((error) => {
+            alert('Failed to send message. Please try again.');
+            console.error("EmailJS Error:", error);
+        })
+        .finally(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        });
 });

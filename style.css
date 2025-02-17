@@ -268,15 +268,22 @@ span{
     height: 40rem;
     display: flex;
     justify-content: center;
-    align-items: center;    
-    opacity: 0;
+    align-items: center;
 }
 
-.about-img::before{
+.about-img::before,
+.about-img::after,
+.about-content::before,
+.about-content::after {
     content: '';
     position: absolute;
     height: 100px;
     width: 100px;
+    opacity: 1;
+}
+
+.about-img::before,
+.about-content::before {
     border-top: .8rem solid var(--main-color);
     border-left: .8rem solid var(--main-color);
     top: -5%;
@@ -284,11 +291,8 @@ span{
     opacity: 0;
 }
 
-.about-img::after{
-    content: '';
-    position: absolute;
-    height: 100px;
-    width: 100px;
+.about-img::after,
+.about-content::after {
     border-right: .8rem solid var(--main-color);
     border-bottom: .8rem solid var(--main-color);
     right: -5%;
@@ -306,7 +310,6 @@ span{
     width: 50%;
     text-align: center;
     margin-right: 5rem;
-    opacity: 0;
 }
 
 .about-content h3{
@@ -322,38 +325,11 @@ span{
     margin-top: 5rem;
 }
 
-.about-content::before{
-    content: '';
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    border-top: .8rem solid var(--main-color);
-    border-left: .8rem solid var(--main-color);
-    top: -5%;
-    left: -5%;
-    opacity: 0;
-}
-
-.about-content::after{
-    content: '';
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    border-right: .8rem solid var(--main-color);
-    border-bottom: .8rem solid var(--main-color);
-    right: -5%;
-    bottom: -5%;
-    opacity: 0;
-}
-
-.appear { animation: appear 1.5s ease-out 0.5s forwards; }
+.appear { animation: appear 2s ease-out 0.5s forwards; }
 
 .appear::before, .appear::after { animation: appear 1.5s ease-out 0.5s forwards; }
 
 @keyframes appear {
-    0% {
-        opacity: 0;
-    }
     100% {
         opacity: 1;
     }
@@ -505,7 +481,6 @@ span{
     }
 }
 
-
 @keyframes showText{
     100%{
         opacity: 1;
@@ -570,55 +545,19 @@ span{
     stroke-dashoffset: 500;
     stroke-linecap: round;
 }
-.path-1.animate-path{ animation: animate-path1 2s linear forwards; }
-.path-2.animate-path{ animation: animate-path2 2s linear forwards; }
-.path-3.animate-path{ animation: animate-path3 2s linear forwards; }
-.path-4.animate-path{ animation: animate-path4 2s linear forwards; }
-.path-5.animate-path{ animation: animate-path5 2s linear forwards; }
-.path-6.animate-path{ animation: animate-path6 2s linear forwards; }
-.path-7.animate-path{ animation: animate-path7 2s linear forwards; }
-.path-8.animate-path{ animation: animate-path8 2s linear forwards; }
-.path-9.animate-path{ animation: animate-path9 2s linear forwards; }
-.path-10.animate-path{ animation: animate-path10 2s linear forwards; }
+.path-1.animate-path { animation: animate-path 2s linear forwards; --offset: 50; }
+.path-2.animate-path { animation: animate-path 2s linear forwards; --offset: 100; }
+.path-3.animate-path { animation: animate-path 2s linear forwards; --offset: 225; }
+.path-4.animate-path { animation: animate-path 2s linear forwards; --offset: 200; }
+.path-5.animate-path { animation: animate-path 2s linear forwards; --offset: 100; }
+.path-6.animate-path { animation: animate-path 2s linear forwards; --offset: 250; }
+.path-7.animate-path { animation: animate-path 2s linear forwards; --offset: 100; }
+.path-8.animate-path { animation: animate-path 2s linear forwards; --offset: 175; }
+.path-9.animate-path { animation: animate-path 2s linear forwards; --offset: 150; }
+.path-10.animate-path { animation: animate-path 2s linear forwards; --offset: 50; }
 
-@keyframes animate-path1{
-    100% {stroke-dashoffset: 50;}
-}
-
-@keyframes animate-path2 {
-    100% { stroke-dashoffset: 100; }
-}
-
-@keyframes animate-path3{
-    100%{ stroke-dashoffset: 275; }
-}
-
-@keyframes animate-path4{
-    100%{ stroke-dashoffset: 200; }
-}
-
-@keyframes animate-path5{
-    100%{ stroke-dashoffset: 100; }
-}
-
-@keyframes animate-path6{
-    100% { stroke-dashoffset: 150; }
-}
-
-@keyframes animate-path7{
-  100%{ stroke-dashoffset: 100; }
-}
-
-@keyframes animate-path8{
-  100%{ stroke-dashoffset: 200; }
-}
-
-@keyframes animate-path9{
-  100%{ stroke-dashoffset: 250; }
-}
-
-@keyframes animate-path10{
-  100%{ stroke-dashoffset: 50; }
+@keyframes animate-path {
+    100% { stroke-dashoffset: var(--offset); }
 }
 
 .circle .percentage{
@@ -748,7 +687,7 @@ contact form .textarea-field textarea:valid~.focus{
     width: 100%;
     height: 100%;
     background-color: var(--bg-color);
-    z-index: 90;
+    z-index: 50;
 }
 
 .animate.home-img{
@@ -766,7 +705,6 @@ contact form .textarea-field textarea:valid~.focus{
 .animate.scroll{
     transition: 1s ease;
     transition-delay: calc(.3s / var(--i));
-    animation: none;
 }
 
 section:nth-child(odd) .animate.scroll,
@@ -823,13 +761,7 @@ footer .animate.scroll{
     }
 }
 
-@media (max-width: 991) {
-    .home {
-        padding: 0 4%;
-        background-position: 75% 50%;
-        background-size: 30%;
-    }
-
+@media (max-width: 991px) {
     .header {
         padding: 2rem 4%;
     }
@@ -862,13 +794,13 @@ footer .animate.scroll{
     }
 }
 
-@media (max-width: 850px){
-    .home{
+@media (max-width: 850px) {
+    .home {
         background-position: 75% 90%;
         background-size: 40%;
-     }
+    }
 
-    .animate.home-img{
+    .animate.home-img {
         width: 55%;
     }
 
@@ -881,7 +813,7 @@ footer .animate.scroll{
         width: 80% !important;
     }
 
-    .circle .percentage{
+    .circle .percentage {
         font-size: 20px;
         font-weight: 600;
     }
@@ -901,13 +833,20 @@ footer .animate.scroll{
         background-color: var(--bg-color);
     }
 
-    .home {
-        background-position: 75% 90%;
-        background-size: 40%;
+    .about-content, .about-img{
+        max-width: 60%;
     }
 
     #menu-icon {
         display: block;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 15rem;
+        align-items: center;
     }
 
     .skills {
@@ -985,16 +924,23 @@ footer .animate.scroll{
         width: 90%;
     }
 
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        row-gap: 15rem;
-    }
-
     .about-content {
         margin-bottom: 5rem;
         margin-left: 4vh;
+    }
+
+    .skills h2 {
+        margin-top: 8rem;
+        margin-bottom: 4rem;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 1200px) {
+    .skills {
+        min-height: 1024px;
+    }
+    .contact {
+        min-height: 924px;
     }
 }
 
@@ -1024,25 +970,8 @@ footer .animate.scroll{
         height: 38px;
     }
 
-    .about-content,
-    .about-img {
-        width: 90%;
-    }
-
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        row-gap: 15rem;
-        align-items: center;
-    }
-
     .about-content p {
         margin: 10px 0 0 0;
-    }
-
-    .about-content {
-        margin-bottom: 5rem;
     }
 
     .skills {
@@ -1110,24 +1039,10 @@ footer .animate.scroll{
         padding-top: 10rem;
     }
 
-    .about-content, .about-img{
-        width: 90%;
-     }
-
     .btn-box{
         place-content: center;
         width: 100%;
     }
-
-    .wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        row-gap: 15rem;
-    }
-    .about-content{
-        margin-bottom: 5rem;
-     }
 
     .education {
         padding: 10rem 4% 5rem 5%;
@@ -1169,19 +1084,20 @@ footer .animate.scroll{
     .btn-box{
         place-content: center;
     }
+}
 
-    .about-content, .about-img{
-        width: 90%;
-     }
-
-    .wrapper{
+/* @media (max-width: 991px) and (max-aspect-ratio: 1/1){
+    .wrapper {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        row-gap: 15rem;
+        row-gap: 5rem;
+        align-items: center;
     }
-    .about-content{
-        margin-bottom: 5rem;
-     }
-}
+} */
 
+@media (min-height: 1200px) and (max-height: 1400px){
+    .contact {
+        min-height: 1248px;
+    }
+}
