@@ -939,6 +939,7 @@ footer .animate.scroll{
     .skills {
         min-height: 1024px;
     }
+
     .contact {
         min-height: 924px;
     }
@@ -1085,16 +1086,6 @@ footer .animate.scroll{
         place-content: center;
     }
 }
-
-/* @media (max-width: 991px) and (max-aspect-ratio: 1/1){
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        row-gap: 5rem;
-        align-items: center;
-    }
-} */
 
 @media (min-height: 1200px) and (max-height: 1400px){
     .contact {
